@@ -1,19 +1,23 @@
-import Mediator from "../../application/events/mediator";
-import DomainEvent from "../../domain/building/domain-event";
-import Handler from "../../application/events/handlers/protocol";
+import Command from "../../application/events/application-events/command";
+import CommandMediator from "../../application/events/mediator-command";
+import Observer from "../../application/events/observer-command";
 
-export default class ConcretMediator implements Mediator {
-	handlers: Handler[] = [];
+export default class Mediator implements CommandMediator {
+    observers: Observer[];
 
-	register (handler: Handler) {
-		this.handlers.push(handler);
-	}
+    constructor () {
+        this.observers = [];
+    }
 
-	publish (event: DomainEvent) {
-		for (const handler of this.handlers) {
-			if (handler.eventName === event.eventName) {
-				handler.handle(event);
-			}
-		}
-	}
+    register(observer: Observer) {
+        this.observers.push(observer);
+    }
+
+    publish(command: Command) {
+        for (const observer of this.observers) {
+            if (observer.operation === command.operation) {
+                observer.notify(command);
+            }
+        }
+    }
 }

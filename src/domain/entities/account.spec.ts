@@ -3,7 +3,6 @@ import Account from "./account"
 describe('account', () => {
     it('should be able create account', () => {
         const account = Account.create({
-            accountNumber: '00001',
             agency: '0000',
             taxId: '06453520000136'
         })
@@ -17,7 +16,6 @@ describe('account', () => {
 
     it('should be able calculate balance', () => {
         const account = Account.create({
-            accountNumber: '00001',
             agency: '0000',
             taxId: '06453520000136'
         })
@@ -33,7 +31,6 @@ describe('account', () => {
 
     it('should not be able create debit with balance equals 0', () => {
         const account = Account.create({
-            accountNumber: '00001',
             agency: '0000',
             taxId: '06453520000136'
         })
@@ -45,7 +42,6 @@ describe('account', () => {
 
     it('should be able create debit transaction', () => {
         const account = Account.create({
-            accountNumber: '00001',
             agency: '0000',
             taxId: '06453520000136'
         })

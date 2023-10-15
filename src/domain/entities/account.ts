@@ -12,7 +12,6 @@ class AccountId extends Id {}
 
 type AccountCommandCreate = {
     taxId: string
-    accountNumber: string
     agency: string
 }
 
@@ -41,7 +40,7 @@ export default class Account extends AggregateRoot {
         const account = new Account(
             new AccountId(),
             new TaxId(props.taxId),
-            new AccountNumber(props.accountNumber),
+            new AccountNumber(),
             new Agency(props.agency),
             []
         )
