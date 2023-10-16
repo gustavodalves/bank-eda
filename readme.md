@@ -1,4 +1,4 @@
-# Event Domain Architecture
+# Event Driven Architecture
 
 ## Synchronous Banking System
 
