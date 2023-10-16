@@ -2,7 +2,7 @@
 
 ## Synchronous Banking System
 
-This project is designed to simulate a synchronous banking system. It demonstrates how various components work together to handle banking operations in a synchronized manner. Operations like crediting and debiting accounts, as well as calculating balances, are processed sequentially, mirroring the real-world behavior of a banking system. This project is an example of an Event Driven Architecture that utilizes the Mediator and Observer patterns. These are the core concepts:
+This project is designed to simulate a synchronous banking system. It demonstrates how various components work together to handle banking operations in a asynchronized manner. Operations like crediting and debiting accounts, as well as calculating balances, are processed sequentially, mirroring the real-world behavior of a banking system. This project is an example of an Event Driven Architecture that utilizes the Mediator and Observer patterns. These are the core concepts:
 
 ## Mediator Pattern
 
