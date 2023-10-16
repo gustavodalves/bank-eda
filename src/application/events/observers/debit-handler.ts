@@ -16,6 +16,6 @@ export default class DebitHandler implements Observer {
         if(!account) throw new Error('account not founded')
         account.debit(debitCommand.value)
 
-        await this.accountRepository.save(account)
+        await this.accountRepository.update(account)
     }
 }

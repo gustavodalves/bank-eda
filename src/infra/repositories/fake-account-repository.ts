@@ -15,4 +15,11 @@ export default class FakeAccountRepository implements AccountRepository {
     async save(account: Account): Promise<void> {
         this.data.push(account)
     }
+
+    async update(account: Account): Promise<void> {
+        const raw = await this.getById(account.id.getValue())
+        if(!raw) throw new Error('account not exists')
+
+        raw.updateTransactions(account.transactions)
+    }
 }

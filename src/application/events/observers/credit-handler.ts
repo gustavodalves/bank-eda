@@ -15,6 +15,6 @@ export default class CreditHandler implements Observer {
         if(!account) throw new Error('account not founded')
         account.credit(event.value)
 
-        await this.accountRepository.save(account)
+        await this.accountRepository.update(account)
     }
 }

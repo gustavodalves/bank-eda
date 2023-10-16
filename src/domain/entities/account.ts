@@ -29,9 +29,17 @@ export default class Account extends AggregateRoot {
         readonly taxId: TaxId,
         readonly accountNumber: AccountNumber,
         readonly agency: Agency,
-        readonly transactions: Transaction[],
+        private _transactions: Transaction[],
     ) {
         super(id)
+    }
+
+    updateTransactions(transactions: Transaction[]) {
+        this._transactions = transactions
+    }
+
+    get transactions() {
+        return this._transactions
     }
 
     static create(

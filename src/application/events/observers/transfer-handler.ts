@@ -25,7 +25,7 @@ export default class TransferHandler implements Observer {
         )
 
         // uow pattern is the best option for this case
-        await this.accountRepository.save(accountFrom)
-        await this.accountRepository.save(accountTo)
+        await this.accountRepository.update(accountFrom)
+        await this.accountRepository.update(accountTo)
     }
 }
