@@ -1,7 +1,7 @@
 import ApplicationEvent from "./application-event";
 
-export default class CreditApplicationEvent implements ApplicationEvent {
-    eventName = 'Credit';
+export default class DebitApplicationEvent implements ApplicationEvent {
+    eventName = 'Debit';
     occurredOn = new Date()
 
     constructor(
