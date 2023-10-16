@@ -1,6 +1,7 @@
-import Command from "./application-events/command";
+import ApplicationEvent from "./application-events/application-event";
 
 export default interface Observer {
-    operation: string
-    notify(event: Command): void;
+    listenEvent: string
+
+    notify(event: ApplicationEvent): void;
 }

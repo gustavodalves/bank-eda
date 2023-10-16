@@ -1,4 +1,4 @@
-import Command from "../../application/events/application-events/command";
+import ApplicationEvent from "../../application/events/application-events/application-event";
 import CommandMediator from "../../application/events/mediator-command";
 import Observer from "../../application/events/observer-command";
 
@@ -13,10 +13,10 @@ export default class Mediator implements CommandMediator {
         this.observers.push(observer);
     }
 
-    publish(command: Command) {
+    publish(event: ApplicationEvent) {
         for (const observer of this.observers) {
-            if (observer.operation === command.operation) {
-                observer.notify(command);
+            if (observer.listenEvent === event.eventName) {
+                observer.notify(event);
             }
         }
     }

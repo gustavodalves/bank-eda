@@ -1,8 +1,8 @@
 import Account from "../../domain/entities/account";
 import AccountRepository from "../../domain/repository/account";
-import CreditCommand from "../events/application-events/credit-command";
-import DebitCommand from "../events/application-events/debit-command";
-import TransferCommand from "../events/application-events/transfer-command";
+import CreditCommand from "../events/application-events/credit-event";
+import DebitCommand from "../events/application-events/debit-event";
+import TransferCommand from "../events/application-events/transfer-event";
 import Mediator from "../events/mediator-command";
 
 export default class AccountService {

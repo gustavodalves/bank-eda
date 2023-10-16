@@ -1,11 +1,11 @@
 
 import AccountRepository from "../../../domain/repository/account";
 import TransferService from "../../../domain/service/transfer";
-import TransferCommand from "../application-events/transfer-command";
+import TransferCommand from "../application-events/transfer-event";
 import Observer from "../observer-command";
 
 export default class TransferHandler implements Observer {
-    operation = 'AccountTransfer';
+    listenEvent: string = 'Transfer';
 
     constructor(
         private readonly accountRepository: AccountRepository

@@ -1,19 +1,19 @@
 import AccountRepository from "../../../domain/repository/account";
-import CreditCommand from "../application-events/credit-command";
+import CreditApplicationEvent from "../application-events/credit-event";
 import Observer from "../observer-command";
 
 export default class CreditHandler implements Observer {
-    operation = 'AccountCredit';
+    listenEvent: string = 'Credit';
 
     constructor(
         private readonly accountRepository: AccountRepository
     ) {}
 
-    async notify(creditCommand: CreditCommand): Promise<void> {
-        const account = await this.accountRepository.getById(creditCommand.accountId)
+    async notify(event: CreditApplicationEvent): Promise<void> {
+        const account = await this.accountRepository.getById(event.accountId)
 
         if(!account) throw new Error('account not founded')
-        account.credit(creditCommand.value)
+        account.credit(event.value)
 
         await this.accountRepository.save(account)
     }

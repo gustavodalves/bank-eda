@@ -1,10 +1,10 @@
 
 import AccountRepository from "../../../domain/repository/account";
-import DebitCommand from "../application-events/debit-command";
+import DebitCommand from "../application-events/debit-event";
 import Observer from "../observer-command";
 
 export default class DebitHandler implements Observer {
-    operation = 'AccountDebit';
+    listenEvent: string = 'Debit';
 
     constructor(
         private readonly accountRepository: AccountRepository

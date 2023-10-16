@@ -1,7 +1,8 @@
-import Command from "./command";
+import Command from "./application-event";
 
 export default class TransferCommand implements Command{
-    operation = 'AccountTransfer';
+    eventName = 'Transfer';
+    occurredOn = new Date()
 
     constructor(
         readonly accountFromId: string,
