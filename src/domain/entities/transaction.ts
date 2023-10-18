@@ -8,9 +8,7 @@ export enum TransactionType {
 
 class TransactionId extends Id {}
 
-export default class Transaction extends Entity {
-    private calculateStrategy: CalculateStrategy
-
+export default abstract class Transaction extends Entity {
     constructor(
         readonly value: number,
         readonly transactionType: TransactionType,
@@ -19,31 +17,33 @@ export default class Transaction extends Entity {
         super(
             id || new TransactionId()
         )
-        this.calculateStrategy = CalculateStrategyFactory.create(this.transactionType)
     }
 
-    calculate(total: number) { return this.calculateStrategy.calculate(total, this.value) }
+    abstract calculate(total: number): number
 }
 
-interface CalculateStrategy {
-    calculate(total: number, value: number): number
-}
-
-class DebitCalculateStrategy implements CalculateStrategy {
-    calculate(total: number, value: number ) { return total - value}
-}
-
-class CreditCalculateStrategy implements CalculateStrategy {
-    calculate(total: number, value: number ) { return total + value}
-}
-
-class CalculateStrategyFactory {
-    static create(
-        type: TransactionType
+export class TransactionDebit extends Transaction {
+    constructor(
+        value: number,
+        id?: TransactionId,
     ) {
-        if(type === TransactionType.debit) return new DebitCalculateStrategy()
-        else if(type === TransactionType.credit) return new CreditCalculateStrategy()
+        super(value, TransactionType.debit, id)
+    }
 
-        throw new Error('transaction type not exists')
+    calculate(total: number): number {
+        return total - this.value
+    }
+}
+
+export class TransactionCredit extends Transaction {
+    constructor(
+        value: number,
+        id?: TransactionId,
+    ) {
+        super(value, TransactionType.credit, id)
+    }
+
+    calculate(total: number): number {
+        return total + this.value
     }
 }

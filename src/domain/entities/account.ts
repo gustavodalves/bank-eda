@@ -3,7 +3,7 @@ import Agency from "./agency";
 import AggregateRoot from "../building/aggregate";
 import Id from "../building/object-values/id";
 import TaxId from "../building/object-values/tax-id";
-import Transaction, { TransactionType } from "./transaction";
+import Transaction, { TransactionCredit, TransactionDebit, TransactionType } from "./transaction";
 import AccountCreated from "../events/account-created";
 import AccountCredited from "../events/account-credited";
 import AccountDebited from "../events/account-debited";
@@ -73,9 +73,8 @@ export default class Account extends AggregateRoot {
     credit(
         value: number
     ) {
-        const transaction = new Transaction(
-            value,
-            TransactionType.credit
+        const transaction = new TransactionCredit(
+            value
         )
 
         this.transactions.push(
@@ -92,9 +91,8 @@ export default class Account extends AggregateRoot {
     ) {
         if(this.getBalance() < value) throw new Error('balance is less than value')
 
-        const transaction = new Transaction(
-            value,
-            TransactionType.debit
+        const transaction = new TransactionDebit(
+            value
         )
 
         this.transactions.push(

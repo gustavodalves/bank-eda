@@ -1,10 +1,9 @@
-import Transaction, { TransactionType } from "./transaction"
+import Transaction, { TransactionCredit, TransactionDebit, TransactionType } from "./transaction"
 
 describe('Transaction', () => {
     it('should be calculate transaction credit', () => {
-        const transaction = new Transaction(
-            100,
-            TransactionType.credit
+        const transaction = new TransactionCredit(
+            100
         )
 
         const balance = 1000
@@ -12,9 +11,8 @@ describe('Transaction', () => {
     })
 
     it('should be calculate transaction dedit', () => {
-        const transaction = new Transaction(
+        const transaction = new TransactionDebit(
             100,
-            TransactionType.debit
         )
 
         const balance = 1000
